@@ -371,12 +371,33 @@ let djAudio;
         }
 
         function handleButtonClick() {
-            playClickSound(); 
-            let data = holiSections[currentIdx];
-            if(data.type === 'intro') { transitionToNext(); } 
-            else if (data.type === 'dj') { document.getElementById('tt-1').classList.add('playing'); document.getElementById('tt-2').classList.add('playing'); btnAction.innerText = "Playing Beats..."; btnAction.style.pointerEvents = "none"; btnAction.style.opacity = "0.7"; setTimeout(transitionToNext, 3500); } 
-            else if (data.type === 'play') { canvas.style.pointerEvents = 'auto'; isCanvasActive = true; startSectionTimer(data.time); } 
-            else if (data.type === 'end') { location.reload(); }
+    playClickSound();
+    let data = holiSections[currentIdx];
+
+    if (data.type === 'intro') {
+        transitionToNext();
+    }
+
+    else if (data.type === 'dj') {
+        document.getElementById('tt-1').classList.add('playing');
+        document.getElementById('tt-2').classList.add('playing');
+
+        if (djAudio) {
+            djAudio.currentTime = 0;
+            djAudio.volume = 0.7;
+            djAudio.play();
+        }
+    }
+
+    else if (data.type === 'play') {
+        canvas.style.pointerEvents = 'auto';
+        isCanvasActive = true;
+        startSectionTimer(data.time);
+    }
+
+    else if (data.type === 'end') {
+        location.reload();
+    }
         }
 
         function transitionToNext() {
