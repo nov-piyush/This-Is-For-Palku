@@ -188,7 +188,8 @@
         const canvas = document.getElementById('canvas-layer'); const ctx = canvas.getContext('2d');
 
         // === PREMIUM AUDIO ENGINE (Web Audio API) ===
-        let audioCtx;
+let audioCtx;
+let djAudio;
         function initAudio() {
             if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             if(audioCtx.state === 'suspended') audioCtx.resume();
@@ -398,8 +399,12 @@
             else if(data.type === 'end') { centerStage.innerHTML = ''; btnAction.innerText = "Replay Experience"; btnAction.classList.add('visible'); isFireworksActive = true; fireworksTimer = setInterval(launchFirework, 800); }
         }
 
-        // Initialization
-        loadSection(0);
-    </script>
+// Initialization
+loadSection(0);
+djAudio = document.getElementById("djMusic");
+</script>
+
+<audio id="djMusic" src="dj-song.mp3" loop></audio>
+
 </body>
 </html>
